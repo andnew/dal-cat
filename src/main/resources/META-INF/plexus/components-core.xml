@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plexus>
+    <components>
+        <component>
+            <role>org.dal.cat.core.dal.HostinfoDao</role>
+            <implementation>org.dal.cat.core.dal.HostinfoDao</implementation>
+            <requirements>
+                <requirement>
+                    <role>org.unidal.dal.jdbc.QueryEngine</role>
+                </requirement>
+            </requirements>
+        </component>
+    </components>
+</plexus>

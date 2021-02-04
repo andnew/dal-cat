@@ -1,0 +1,15 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<component-set>-->
+<!--    <components>-->
+<!--        <component>-->
+<!--            <role>HelloWorld</role>-->
+<!--            <role-hint>helloworld</role-hint>-->
+<!--            <implementation>HelloWorldImpl</implementation>-->
+<!--        </component>-->
+<!--        <component>-->
+<!--            <role>HelloWorld</role>-->
+<!--            <role-hint>helloworld</role-hint>-->
+<!--            <implementation>HelloWorldImpl2</implementation>-->
+<!--        </component>-->
+<!--    </components>-->
+<!--</component-set>-->
