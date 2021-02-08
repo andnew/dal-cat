@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities do-package="org.dal.cat.core.dal" gen="true">
+	<entity name="hostinfo" table="hostinfo" alias="h">
+		<member name="creation-date" insert-expr="NOW()" />
+		<member name="last-modified-date" insert-expr="NOW()" update-expr="NOW()" />
+		<query-defs>
+			<query name="find-by-ip" type="SELECT">
+				<param name="ip" />
+				<statement><![CDATA[
+				SELECT <FIELDS/> 
+				FROM <TABLE/> 
+				WHERE <FIELD name='ip'/> = ${ip}
+				]]></statement>
+			</query>
+			<query name="find-all-ip" type="SELECT" multiple="true">
+				<statement><![CDATA[
+				SELECT <FIELDS/> 
+				FROM <TABLE/> 
+				]]></statement>
+			</query>
+			<query name="insert" type="INSERT">
+				<statement><![CDATA[
+			INSERT INTO <TABLE/>
+			(<FIELDS/>) VALUES(<VALUES/>) 
+			ON DUPLICATE KEY 
+			UPDATE <FIELD name='domain'/> = ${domain},
+            <FIELD name='last-modified-date'/> = NOW()]]></statement>
+			</query>
+		</query-defs>
+	</entity>
+	<entity name="project" table="project" alias="p">
+		<member name="creation-date" insert-expr="NOW()" />
+		<member name="modify-date" insert-expr="NOW()" update-expr="NOW()" />
+		<query-defs>
+			<query name="find-all" type="SELECT" multiple="true">
+				<statement><![CDATA[
+				SELECT <FIELDS/> 
+				FROM <TABLE/> 
+				]]></statement>
+			</query>
+			<query name="find-by-domain" type="SELECT">
+				<param name="domain" />
+				<statement><![CDATA[
+				SELECT <FIELDS/> 
+				FROM <TABLE/>  WHERE binary(<FIELD name='domain'/>) = binary(${domain})
+				]]></statement>
+			</query>
+			<query name="find-by-cmdb-domain" type="SELECT">
+				<param name="domain" />
+				<statement><![CDATA[
+				SELECT <FIELDS/> 
+				FROM <TABLE/>  WHERE binary(<FIELD name='cmdb-domain'/>) = binary(${domain})
+				]]></statement>
+			</query>
+			<query name="insert" type="INSERT">
+				<statement><![CDATA[
+				INSERT INTO <TABLE/>
+				(<FIELDS/>) VALUES(<VALUES/>) 
+				ON DUPLICATE KEY 
+				UPDATE <FIELD name='domain'/> = ${domain},
+            	<FIELD name='modify-date'/> = NOW()]]></statement>
+			</query>
+		</query-defs>
+	</entity>
+</entities>
