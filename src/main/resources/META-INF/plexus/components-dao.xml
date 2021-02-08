@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plexus>
+    <components>
+        <component>
+            <role>org.dal.cat.service.ProjectService</role>
+            <implementation>org.dal.cat.service.ProjectService</implementation>
+            <requirements>
+                <requirement>
+                    <role>org.dal.cat.core.dal.ProjectDao</role>
+                </requirement>
+            </requirements>
+        </component>
+        <component>
+            <role>org.dal.cat.core.dal.ProjectDao</role>
+            <implementation>org.dal.cat.core.dal.ProjectDao</implementation>
+            <requirements>
+                <requirement>
+                    <role>org.unidal.dal.jdbc.QueryEngine</role>
+                </requirement>
+            </requirements>
+        </component>
+        <component>
+            <role>org.unidal.dal.jdbc.datasource.DataSourceProvider</role>
+            <implementation>org.unidal.dal.jdbc.datasource.DefaultDataSourceProvider</implementation>
+            <configuration>
+                <datasourceFile>/data/appdatas/cat/datasources.xml</datasourceFile>
+            </configuration>
+        </component>
+        <component>
+            <role>org.unidal.dal.jdbc.mapping.TableProvider</role>
+            <role-hint>project</role-hint>
+            <implementation>org.unidal.dal.jdbc.mapping.SimpleTableProvider</implementation>
+            <configuration>
+                <physical-table-name>project</physical-table-name>
+                <data-source-name>cat</data-source-name>
+            </configuration>
+        </component>
+        <component>
+            <role>org.unidal.lookup.logging.LoggerManager</role>
+            <implementation>org.unidal.lookup.logging.TimedConsoleLoggerManager</implementation>
+            <configuration>
+                <dateFormat>yyyy-MM-dd HH:mm:ss.SSS</dateFormat>
+                <showClass>true</showClass>
+                <logFilePattern>dat_{0,date,yyyyMMdd}.log</logFilePattern>
+                <baseDirRef>CAT_HOME</baseDirRef>
+                <defaultBaseDir>/data/applogs/cat</defaultBaseDir>
+            </configuration>
+        </component>
+    </components>
+</plexus>
